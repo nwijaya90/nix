@@ -1,12 +1,37 @@
-// src/App.js
-import React from "react";
+import React, { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { Container, Toggle } from "./elements";
+
+import { Hero, About, Projects, Contact, Footer } from "./components";
+
+const lightTheme = {
+  background: "#f9f9f9",
+  text: "#333",
+};
+
+const darkTheme = {
+  background: "#121212",
+  text: "#f0f0f0",
+};
 
 function App() {
+  const [dark, setDark] = useState(false);
+
   return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h1>Hello, I'm Nikolas 👋</h1>
-      <p>This is my personal portfolio site builtss with React.</p>
-    </div>
+    <ThemeProvider theme={dark ? darkTheme : lightTheme}>
+      <Container
+        style={{
+          backgroundColor: dark ? "#121212" : "#f9f9f9",
+          minHeight: "100vh",
+        }}
+      >
+        <Hero />
+        <About />
+        <Projects />
+        <Contact />
+        <Footer />
+      </Container>
+    </ThemeProvider>
   );
 }
 
